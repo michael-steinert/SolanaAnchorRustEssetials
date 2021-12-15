@@ -51,19 +51,19 @@
 * The Leaders (Block Producers) breaks the Block into Packets up to 64 KB in Size, and transmits each Packet to a different Validator
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/29623199/145829570-fbbec465-ac42-4193-be7c-0964004c264d.png" alt="Leader-Validator-Relationship" width="42%"/>
+  <img src="https://user-images.githubusercontent.com/29623199/145829570-fbbec465-ac42-4193-be7c-0964004c264d.png" alt="Leader-Validator-Relationship" width="65%"/>
 </P>
 
 * Each Validator retransmits the Packet to a Group of Peers (Neighborhood)
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/29623199/145829869-3db01f3e-7f6f-4fb0-924f-23735f89e145.png" alt="Neighborhood-Relationship" width="42%"/>
+  <img src="https://user-images.githubusercontent.com/29623199/145829869-3db01f3e-7f6f-4fb0-924f-23735f89e145.png" alt="Neighborhood-Relationship" width="75%"/>
 </P>
 
 * Each Neighborhood is responsible for Transmitting a Portion of its Data to each Neighborhood below it
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/29623199/145830179-2293e3ac-1e08-442d-a338-35e9f77b3f9e.png" alt="Neighborhood-Transmitting" width="42%"/>
+  <img src="https://user-images.githubusercontent.com/29623199/145830179-2293e3ac-1e08-442d-a338-35e9f77b3f9e.png" alt="Neighborhood-Transmitting" width="65%"/>
 </P>
 
 * Not all Validators are created equal - the most important Validators are those with the most Stake
@@ -139,7 +139,7 @@
 * By the Time the TPU starts to send Blocks out to the Validators, it is already fetched in the next Set of Packets, verified their Signatures, and begun crediting Tokens
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/29623199/145850212-907bc18b-affc-48f6-9d34-54c2b2c86dcb.png" alt="Transactional Processing Unit" width="42%"/>
+  <img src="https://user-images.githubusercontent.com/29623199/145850212-907bc18b-affc-48f6-9d34-54c2b2c86dcb.png" alt="Transactional Processing Unit" width="75%"/>
 </P>
 
 ## Cloudbreak
@@ -162,26 +162,43 @@
 ## Solana CLI
 * The Solana CLI allows to configure the Network well as doing an Airdrop of Tokens into to a Wallet
 
-| Command                                       | Description                                                                                     |
-|-----------------------------------------------|-------------------------------------------------------------------------------------------------|
-| solana config get                             | Getting current Network Configuration                                                           |
-| solana-keygen new -o ~\.config\solana\id.json | Generating a new Keypair (in ~/.config/solana/id.json) and deriving Public Key (Wallet Address) |
-| solana config set --url localhost             | Setting Network to localhost (Wallet has to have the same Network as the local Environment)     |
-| solana config set --url devnet                | Setting Network to devnet (Wallet has to have the same Network as the local Environment)        |
-| solana address                                | Getting current Address (lcoal Wallet)                                                          |
-| solana account <address>                      | Getting Details about an Account                                                                |
-| solana-test-validator                         | Starting the local Network                                                                      |
-| solana airdrop 100                            | Airdropping some SOL                                                                            |
-| solana balance <address>                      | Showing Balance of given Address                                                                |
+| Command                                                 | Description                                                                                    |
+|---------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| solana config get                                       | Getting current Network Configuration                                                          |
+| solana-keygen new -o ~\.config\solana\id.json           | Generating a new Keypair (in ~/.config/solana/id.json) and deriving Public Key (Wallet Address) |
+| solana config set --url localhost                       | Setting Network to localhost (Wallet has to have the same Network as the local Environment)    |
+| solana config set --url devnet                          | Setting Network to devnet (Wallet has to have the same Network as the local Environment)       |
+| solana address                                          | Getting current Address (lcoal Wallet)                                                         |
+| solana account <address>                                | Getting Details about an Account                                                               |
+| solana-test-validator                                   | Starting the local Network (first, change to the Home Directory - cd ~/)                       |
+| solana airdrop 42 <address>                             | Airdropping some SOL Tokens to given Address                                                   |
+| solana balance <address>                                | Showing Balance of given Address                                                               |
+| solana address -k target/deploy/solana_app-keypair.json | Getting dynamically generated Program ID                                                       |
 
 <hr/>
+
+## Anchor
+* Anchor uses, and enables to write, an eDSL (embedded DSL) that abstracts away many of complex Low Level Operations from Solana and Rust
+* IDLs (Interface Description Language) are used in JavaScript Tests and Front Ends to communicate with Solana Programs via RPC
 
 ## Anchor CLI
 * The Solana CLI allows to configure the Network well as doing an Airdrop of Tokens into to a Wallet
 
-| Command                             | Description                       |
-|-------------------------------------|-----------------------------------|
-| anchor init solana-app --javascript | Intialize an empty Anchor Project |
-|||
-|||
+| Command                             | Description                            |
+|-------------------------------------|----------------------------------------|
+| anchor init solana-app --javascript | Initialize an empty Anchor Project     |
+| anchor build                        | Compile a Program                      |
+| anchor test                         | Test a Program                         |
+| anchor test --skip-local-validator  | Test a Program (if Testnet is running) |
+| anchor deploy                       | Deploye a Program with Deploy Script   |
+
+## Anchor Project Structure
+
+| Folder      | Description                                               |
+|-------------|-----------------------------------------------------------|
+| app         | Front End Code                                            |
+| programs    | Rust Code for the Solana Programs                         |
+| test        | JavaScript Tests for Solana Programs                      |
+| migrations  | Deploy Scripts for Solana Programs                        |
+| target/idl/ | Created Artifacts in IDL (Interface Description Language) |
 
