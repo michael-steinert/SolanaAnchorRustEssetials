@@ -8,7 +8,7 @@
   * __Sealevel__ - a parallel Smart Contracts Runtime
   * __Pipelining__ - a Transaction Processing Unit for Validation Optimization
   * __Cloudbreak__ - a horizontally-scaled Accounts Database
-  * __Archivers__ — a distributed Ledger Store
+  * __Archivers__ - a distributed Ledger Store
 
 ## Proof of History (PoH)
 * Synchronized Clocks can be used to improve the Performance of distributed algorithms -  they make it possible to replace Communication with local Computation
