@@ -2,16 +2,11 @@ import {useState} from "react";
 import {Connection, PublicKey} from "@solana/web3.js";
 import {Program, Provider, web3} from "@project-serum/anchor";
 import idl from "./idl/idl.json";
-import {getPhantomWallet} from "@solana/wallet-adapter-wallets";
-import {useWallet, WalletProvider, ConnectionProvider} from "@solana/wallet-adapter-react";
-import {WalletModalProvider, WalletMultiButton} from "@solana/wallet-adapter-react-ui";
+import {useWallet} from "@solana/wallet-adapter-react";
+import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
-const wallets = [
-    /* List of available Wallets at https://github.com/solana-labs/wallet-adapter#wallets */
-    getPhantomWallet()
-]
 const {SystemProgram, Keypair} = web3;
 /* Create an Account  */
 const baseAccount = Keypair.generate();
@@ -104,7 +99,7 @@ function App() {
                     }
 
                     {
-                        value && value >= Number(0) ? (
+                        (value && value >= Number(0)) ? (
                             <h2>{value}</h2>
                         ) : (
                             <h3>Please create the Counter</h3>
@@ -116,15 +111,4 @@ function App() {
     }
 }
 
-/* Wallet Configuration as specified here: https://github.com/solana-labs/wallet-adapter#setup */
-const AppWithProvider = () => (
-    <ConnectionProvider endpoint="http://127.0.0.1:8899">
-        <WalletProvider wallets={wallets} autoConnect>
-            <WalletModalProvider>
-                <App/>
-            </WalletModalProvider>
-        </WalletProvider>
-    </ConnectionProvider>
-)
-
-export default AppWithProvider;
+export default App;

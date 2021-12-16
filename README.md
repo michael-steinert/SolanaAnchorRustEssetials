@@ -8,6 +8,7 @@
   * __Sealevel__ - a parallel Smart Contracts Runtime
   * __Pipelining__ - a Transaction Processing Unit for Validation Optimization
   * __Cloudbreak__ - a horizontally-scaled Accounts Database
+  * __Archivers__ — a distributed Ledger Store
 
 ## Proof of History (PoH)
 * Synchronized Clocks can be used to improve the Performance of distributed algorithms -  they make it possible to replace Communication with local Computation
@@ -156,6 +157,14 @@
 7) The Index is updated after each write is completed
 * Cloudbreak also performs a form of Garbage Collection - as Forks become finalized beyond Rollback and Accounts are updated, old invalid Accounts are Garbage-collected, and Memory is relinquished
 * The Computing of the Merkle Root of the State Updates for any given Fork can be done with sequential Reads that are horizontally scaled across SSDs
+
+## Archivers
+* Archivers are specialized Light Clients
+* They download a Part of the Ledger (a.k.a. Segment) and store it, and provide PoReps (Proof-of-Replication) of storing the Ledger
+* For each verified PoRep (Proof-of-Replication) Archivers earn a Reward of SOL from the Mining Pool
+* The Game between Validators and Archivers is over random Blocks and random Encryption Identities and random Data Samples
+* The Goal of Randomization is to prevent colluding Groups from having Overlap on Data or Validation
+* Archiver Clients fish for lazy Validators by submitting Fake Proofs that they can prove are fake
 
 <hr/>
 
